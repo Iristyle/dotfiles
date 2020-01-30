@@ -1,0 +1,32 @@
+# Search hidden files and directories.
+--hidden
+
+# Follow symbolic links.
+--follow
+
+# Don't respect ignore files (.gitignore, .ignore, etc.).
+--no-ignore
+
+# Exclude directories, file types, files.
+--glob=!{.git,.svn,node_modules,Trash,vendor}
+--glob=!*.{lock}
+--glob=!{package-lock.json}
+
+# Don't print lines longer than this limit and show a preview
+--max-columns=10000
+--max-columns-preview
+
+# Searches case insensitively.
+--smart-case
+
+# Sort by file path.
+--sort=path
+
+# hex codes or names are allowed
+--colors=path:fg:blue
+--colors=match:fg:white
+--colors=match:style:bold
+
+# aliases
+--type-add=web:*.{html,css,js}*
+--type-add=ruby:*.{rb,erb,md,c,h,cpp}*

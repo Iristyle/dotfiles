@@ -1,7 +1,16 @@
 #!/usr/bin/env bash
 
+export PATH="/usr/local/bin:/usr/local/opt/go/libexec/bin:$PATH:$HOME/source/go"
+
+# remove duplicate entries
+typeset -U PATH
+
 # Make vim the default editor.
-export EDITOR='vim';
+# export EDITOR='vim';
+export EDITOR='subl -w'
+
+# This resolves issues install the mysql, postgres, and other gems with native non universal binary extensions
+export ARCHFLAGS='-arch x86_64'
 
 # Enable persistent REPL history for `node`.
 export NODE_REPL_HISTORY=~/.node_history;
@@ -13,22 +22,89 @@ export NODE_REPL_MODE='sloppy';
 # Make Python use UTF-8 encoding for output to stdin, stdout, and stderr.
 export PYTHONIOENCODING='UTF-8';
 
+# Enable color in grep
+# export GREP_OPTIONS='--color=auto' # deprecated setting, use alias instead
+export GREP_COLOR='3;33'
+
+# https://github.com/dvorka/hstr/blob/master/CONFIGURATION.md#hstr-config-options
+export HSTR_CONFIG=hicolor       # get more colors
+
+# default command line switches for ripgrep
+export RIPGREP_CONFIG_PATH=${HOME}/.ripgreprc
+
+# Setup terminal, and turn on colors
+export CLICOLOR=1
+if ls --color > /dev/null 2>&1; then # GNU `ls` or 'lsd' from https://github.com/Peltoche/lsd
+  export LS_COLORS='no=00:fi=00:di=01;31:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.avi=01;35:*.fli=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.ogg=01;35:*.mp3=01;35:*.wav=01;35:'
+else # macOS `ls`
+  export LSCOLORS='BxBxhxDxfxhxhxhxhxcxcx' # Gxfxcxdxbxegedabagacad
+fi
+
 # Increase Bash history size. Allow 32³ entries; the default is 500.
 export HISTSIZE='32768';
+export SAVEHIST='32768';
 export HISTFILESIZE="${HISTSIZE}";
+export HISTIGNORE="&:ls:ll:la:l.:pwd:exit:clear:clr:[bf]g"
 # Omit duplicates and commands that begin with a space from history.
-export HISTCONTROL='ignoreboth';
+export HISTCONTROL='ignoreboth:erasedups';
 
 # Prefer US English and use UTF-8.
 export LANG='en_US.UTF-8';
 export LC_ALL='en_US.UTF-8';
+# CTAGS Sorting in VIM/Emacs is better behaved with this in place
+export LC_COLLATE=C
+export LC_CTYPE=en_US.UTF-8
 
-# Highlight section titles in manual pages.
-export LESS_TERMCAP_md="${yellow}";
+# Highlight manpages
+export LESS="--ignore-case --RAW-CONTROL-CHARS"
+export LESSOPEN="| src-hilite-lesspipe.sh %s"
+export LESSHISTFILE=/dev/null
+export LESS_TERMCAP_mb=$'\E[01;32m'      # being blinking (bright green)
+export LESS_TERMCAP_md=$'\E[01;32m'      # begin bold (bright green)
+export LESS_TERMCAP_me=$'\E[0m'          # end mode
+export LESS_TERMCAP_se=$'\E[0m'          # end standout-mode
+export LESS_TERMCAP_so=$'\E[01;44;33m'   # begin standout-mode - info box
+export LESS_TERMCAP_ue=$'\E[0m'          # end underline
+export LESS_TERMCAP_us=$'\E[01;37m'      # begin underline (white)
 
 # Don’t clear the screen after quitting a manual page.
 export MANPAGER='less -X';
+export PAGER='less'
 
 # Avoid issues with `gpg` as installed via Homebrew.
 # https://stackoverflow.com/a/42265848/96656
 export GPG_TTY=$(tty);
+
+export ANDROID_HOME=/usr/local/opt/android-sdk
+export BROWSER=google-chrome
+export BAT_THEME="TwoDark"
+export GOPATH=~/source/go
+
+# keg-only casks not symlinked into /usr/local
+#
+# ==> openssl@1.1
+# ==> gettext
+#   macOS provides the BSD gettext library & some software gets confused if both are in the library path.
+# ==> readline
+#   macOS provides the BSD libedit library, which shadows libreadline.
+# ==> sqlite
+#   macOS provides an older sqlite3
+# ==> ncurses
+#   macOS already provides this software and installing another version in parallel can cause all kinds of trouble.
+#
+# If you need any of these in PATH run:
+#   echo 'export PATH="/usr/local/opt/#{kegname}/bin:$PATH"' >> ~/.zshrc
+#
+# For compilers to find these, may need to set:
+#   export LDFLAGS="-L/usr/local/opt/#{kegname}/lib"
+#   export CPPFLAGS="-I/usr/local/opt/#{kegname}/include"
+
+# ==> ruby-build
+# ruby-build installs a non-Homebrew OpenSSL for each Ruby version installed and these are never upgraded.
+#
+# To link Rubies to Homebrew's OpenSSL 1.1 (which is upgraded) add the following
+# to your ~/.zshrc:
+#   export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+#
+# Note: this may interfere with building old versions of Ruby (e.g <2.4) that use
+# OpenSSL <1.1.
