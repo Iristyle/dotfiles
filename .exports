@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-export PATH="/usr/local/bin:/usr/local/opt/go/libexec/bin:$PATH:$HOME/source/go"
+export PATH="/usr/local/gnubin:/usr/local/bin:/usr/local/opt/go/libexec/bin:$PATH:$HOME/source/go"
 
 # remove duplicate entries
 typeset -U PATH
