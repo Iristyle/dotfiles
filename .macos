@@ -254,6 +254,11 @@ sudo systemsetup -settimezone "America/Los_Angeles" > /dev/null
 # Stop iTunes from responding to the keyboard media keys
 #launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2> /dev/null
 
+# fix home / end keyboard bindings as well as selections
+# http://mwholt.blogspot.com/2012/09/fix-home-and-end-keys-on-mac-os-x.html
+mkdir -p ~/Library/KeyBindings
+cp -r init/DefaultKeyBinding.dict ~/Library/KeyBindings/DefaultKeyBinding.dict 2> /dev/null
+
 ###############################################################################
 # Energy saving                                                               #
 ###############################################################################
