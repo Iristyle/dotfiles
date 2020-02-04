@@ -260,6 +260,12 @@ mkdir -p ~/Library/KeyBindings
 cp -r init/DefaultKeyBinding.dict ~/Library/KeyBindings/DefaultKeyBinding.dict 2> /dev/null
 
 ###############################################################################
+# Karabiner Elements                                                          #
+###############################################################################
+mkdir -p ~/.config
+cp -r init/.config/karabiner ~/.config 2> /dev/null
+
+###############################################################################
 # Hammerspoon                                                                 #
 ###############################################################################
 
