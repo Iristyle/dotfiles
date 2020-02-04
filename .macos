@@ -260,6 +260,13 @@ mkdir -p ~/Library/KeyBindings
 cp -r init/DefaultKeyBinding.dict ~/Library/KeyBindings/DefaultKeyBinding.dict 2> /dev/null
 
 ###############################################################################
+# Hammerspoon                                                                 #
+###############################################################################
+
+# global keyboard accelerators, grid, etc
+cp -r init/.hammerspoon ~ 2> /dev/null
+
+###############################################################################
 # Energy saving                                                               #
 ###############################################################################
 
