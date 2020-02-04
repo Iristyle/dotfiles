@@ -1,10 +1,16 @@
 {
-	"color_scheme": "Packages/Color Scheme - Default/Solarized (Dark).tmTheme",
+	"auto_complete_commit_on_tab": true,
+	"bold_folder_labels": true,
+	"caret_extra_bottom": 2,
+	"caret_extra_top": 2,
+	"caret_extra_width": 2,
+	"caret_style": "phase",
+	"close_windows_when_empty": true,
+	"color_scheme": "Packages/Solarized Color Scheme/Solarized (dark).sublime-color-scheme",
 	"default_encoding": "UTF-8",
 	"default_line_ending": "unix",
-	"detect_indentation": false,
 	"draw_white_space": "all",
-	"ensure_newline_at_eof_on_save": false,
+	"ensure_newline_at_eof_on_save": true,
 	"file_exclude_patterns":
 	[
 		".DS_Store",
@@ -20,22 +26,65 @@
 		".git",
 		"node_modules"
 	],
-	"font_face": "Monaco",
-	"font_size": 13,
+	"font_face": "FuraCode Nerd Font Retina",
+	"font_options":
+	[
+		"subpixel_antialias"
+	],
+	"font_size": 15.0,
+	"highlight_line": true,
 	"highlight_modified_tabs": true,
-	"hot_exit": false,
-	"line_padding_bottom": 5,
+	"ignored_packages":
+	[
+		"Caret History",
+		"GotoRecent",
+		"HTML Export",
+		"Markdown",
+		"MultiTaskBuild",
+		"Open Related",
+		"QuickFileMove",
+		"SublimeREPL",
+		"TrailingSpaces",
+		"Vintage",
+		"zzz A File Icon zzz"
+	],
+	"indent_guide_options":
+	[
+		"draw_active",
+		"draw_normal"
+	],
 	"match_brackets": true,
 	"match_brackets_angle": true,
-	"remember_open_files": false,
 	"rulers":
 	[
-		80
+		51,
+		73,
+		81,
+		121
 	],
 	"show_encoding": true,
+	"show_full_path": true,
 	"show_line_endings": true,
+	"show_tab_close_buttons": false,
 	"tab_size": 2,
-	"translate_tabs_to_spaces": false,
+	"theme": "Boxy Solarized Dark.sublime-theme",
+	"theme_accent_purple": true,
+	"theme_bar": true,
+	"theme_bar_shadow_hidden": true,
+	"theme_dropdown_atomized": true,
+	"theme_find_panel_atomized": true,
+	"theme_sidebar_disclosure": true,
+	"theme_sidebar_folder_mono": true,
+	"theme_sidebar_indent_sm": true,
+	"theme_statusbar_colored": true,
+	"theme_statusbar_size_md": true,
+	"theme_tab_highlight_text_only": true,
+	"theme_tab_selected_filled": true,
+	"theme_tab_size_md": true,
+	"theme_tabset_line_visible": true,
+	"theme_unified": true,
+	"translate_tabs_to_spaces": true,
 	"trim_trailing_white_space_on_save": true,
+	"wide_caret": true,
 	"word_wrap": true
 }
