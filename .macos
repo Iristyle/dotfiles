@@ -86,7 +86,9 @@ defaults write com.apple.LaunchServices LSQuarantine -bool false
 defaults write NSGlobalDomain NSTextShowsControlCharacters -bool true
 
 # Disable Resume system-wide
-# defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false
+# necessary to uncheck the box in System Prefs -> General labeled "Close windows when quitting an app"
+# which *must* be unchecked to support restoring sessions in iTerm2
+defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool true
 
 # Disable automatic termination of inactive apps
 defaults write NSGlobalDomain NSDisableAutomaticTermination -bool true
