@@ -95,7 +95,13 @@ pick'async.zsh' light-mode \
 
 
 # avoid constant recompilation - is this even necessary with zinit??
-https://gist.github.com/ctechols/ca1035271ad134841284
+# https://gist.github.com/ctechols/ca1035271ad134841284  ################
+autoload -Uz compinit
+if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
+  compinit;
+else
+  compinit -C;
+fi;
 
 # makes your touchbar more powerful - https://github.com/zsh-users/zsh-apple-touchbar
 

@@ -853,6 +853,38 @@ open "${HOME}/init/Solarized Dark Patched.itermcolors"
 # Don’t display the annoying prompt when quitting iTerm
 # defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 
+# TODO: script the setup of iTerm to load a profile
+echo "Import iTerm2 keymap from ${HOME}/init/"
+# TODO: make this idempotent
+# launch iterm2 to import keybindings
+osascript <<EOD
+tell application "iTerm2"
+    activate
+    tell current window
+        set newTab to (create tab with default profile command "cd ${HOME}/init")
+        tell current tab
+            select
+        end tell
+        tell current session
+            write text "# open preferences and import ${HOME}/init/iterm_key_presets.itermkeymap"
+        end tell
+    end tell
+end tell
+EOD
+
+# tell menu bar 1 to click menu item "Preferences…" of menu "iTerm2"
+
+
+# tell application "iTerm2"
+#     activate
+#     tell menu bar 1 to click menu item "Preferences…" of menu "iTerm2"
+# end tell
+#     click button "Keys" of tool bar 1 of window 1
+# end tell
+# EOD
+
+# click button "Presets..."
+
 ###############################################################################
 # PowerShell                                                                  #
 ###############################################################################

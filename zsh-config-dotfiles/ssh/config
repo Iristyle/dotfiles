@@ -1,0 +1,28 @@
+# WebFaction
+# port 52698 is the rmate port
+#Host *.webfactional.com
+#RemoteForward 52698 127.0.0.1:52698
+
+host *
+    User mhn
+
+# WebTeam Fabric
+#Host ec2*compute-1.amazonaws.com
+#    StrictHostKeyChecking no
+#    User fabric
+#    IdentityFile  /Users/mhn/.ssh/id_fabric
+#Host ec2*compute-1.amazonaws.com
+#    StrictHostKeyChecking no
+#    User mhn
+#    IdentityFile /Users/mhn/.ssh/mhn.pem
+
+host aws_prod1
+    HostName ec2-23-21-38-28.compute-1.amazonaws.com
+    StrictHostKeyChecking no
+    User mhn
+    IdentityFile /Users/mhn/.ssh/mhn.pem
+
+host web_prod1
+    HostName ec2-23-21-38-28.compute-1.amazonaws.com
+    User ubuntu
+    IdentityFile /Users/mhn/.ssh/asakey.pem

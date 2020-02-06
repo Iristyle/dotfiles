@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-export PATH="/usr/local/gnubin:/usr/local/bin:/usr/local/opt/go/libexec/bin:$PATH:$HOME/source/go"
+# make sure GNU utils first, then Homebrew
+export PATH="/usr/local/gnubin:/usr/local/bin:$(brew --prefix)/opt/go/libexec/bin:$HOME/.cargo/bin:$PATH"
 
 # remove duplicate entries
 typeset -U PATH
@@ -31,6 +32,44 @@ export HSTR_CONFIG=hicolor       # get more colors
 
 # default command line switches for ripgrep
 export RIPGREP_CONFIG_PATH=${HOME}/.ripgreprc
+
+# fzf config and customizations https://github.com/junegunn/fzf
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# TODO: finish these opts
+# https://github.com/petobens/dotfiles/blob/master/fzf_bash.sh
+export FZF_DEFAULT_OPTS='
+--height 15
+--inline-info
+--prompt="❯ "
+--bind=ctrl-space:toggle+up,ctrl-d:half-page-down,ctrl-u:half-page-up
+--bind=alt-v:toggle-preview,alt-j:preview-down,alt-k:preview-up
+--header='C-space=sel+up'
+--color=prompt:#61afef,header:#566370,info:#5c6370,pointer:#c678dd
+--color=marker:#98c379,spinner:#e06c75,border:#282c34
+'
+# --color=bg+:#282c34,bg:#24272e,fg:#abb2bf,fg+:#abb2bf,hl:#528bff,hl+:#528bff
+
+# FZF_DEFAULT_OPTS="
+# --border
+# --height 80%
+# --extended
+# --ansi
+# --reverse
+# --cycle
+# --bind ctrl-s:toggle-sort
+# --bind 'alt-e:execute($EDITOR {} >/dev/tty </dev/tty)'
+# --preview \"(bat --color=always {} || ls -l --color=always {}) 2>/dev/null | head -200\"
+# --preview-window right:50%:hidden
+# "
+# FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude .git 2>/dev/null"
+
+
+export FZF_DEFAULT_COMMAND='fd --type f --color=never'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND='fd --type d . --color=never'
+export FZF_CTRL_T_OPTS="--preview 'bat --color=always --line-range :500 {}'"
+# export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -100'"
+export FZF_ALT_C_OPTS="--preview 'lsd --tree -C {} | head -100'"
 
 # Setup terminal, and turn on colors
 export CLICOLOR=1
