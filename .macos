@@ -688,6 +688,12 @@ open "${HOME}/init/Solarized Dark.itermcolors"
 defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 
 ###############################################################################
+# PowerShell                                                                  #
+###############################################################################
+mkdir -p ${HOME}/.config/powershell
+cp -r init/.config/powershell ${HOME}/.config/powershell/ 2> /dev/null
+
+###############################################################################
 # Time Machine                                                                #
 ###############################################################################
 
