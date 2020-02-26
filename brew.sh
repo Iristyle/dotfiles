@@ -415,5 +415,10 @@ RUBY_GEMS=(
 )
 asdf exec gem install ${RUBY_GEMS[@]}
 
+# Rust
+rustup-init --verbose -y --no-modify-path --profile default --default-toolchain stable
+rustup completions powershell > ${HOME}/.config/powershell/rustup.ps1
+asdf plugin add rust
+
 # reload the shell
 exec $SHELL -l
