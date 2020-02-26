@@ -395,5 +395,25 @@ echo "Cleaning up..."
 # Remove outdated versions from the cellar.
 brew cleanup
 
+echo "Installing Ruby..."
+
+# Ruby
+asdf plugin add ruby
+asdf install ruby latest
+asdf global ruby $(asdf list ruby)
+
+echo "Updating Rubygems..."
+asdf exec gem update --system
+
+echo "Installing Ruby gems"
+RUBY_GEMS=(
+    bundler
+    pry
+    pry-byebug
+    pry-stack_explorer
+    twig
+)
+asdf exec gem install ${RUBY_GEMS[@]}
+
 # reload the shell
 exec $SHELL -l
