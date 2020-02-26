@@ -48,3 +48,13 @@ complete -W "NSGlobalDomain" defaults;
 
 # Add `killall` tab completion for common apps
 complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall;
+
+# https://github.com/dvorka/hstr/blob/master/CONFIGURATION.md
+# bind HSTR to ctrl-r
+bind '"\C-r": "\e^hstr -- \n"'
+
+# minikube already symlinks in
+BREW_PREFIX=$(brew --prefix)
+kubectl completion bash > ${BREW_PREFIX}/etc/bash_completion.d/kubectl
+rustup completions bash > ${BREW_PREFIX}/etc/bash_completion.d/rustup
+rustup completions bash cargo > ${BREW_PREFIX}/etc/bash_completion.d/cargo
